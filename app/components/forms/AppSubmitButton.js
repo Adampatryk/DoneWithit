@@ -13,6 +13,4 @@ const AppSubmitButton = ({ name, ...other }) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default AppSubmitButton;
