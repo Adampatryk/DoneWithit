@@ -1,10 +1,17 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+} from "react-native";
 import colours from "../config/colours";
 
 import Screen from "../components/Screen";
 import Icon from "./../components/Icon";
 import { ListItem, ListItemSeparator } from "../components/lists";
+import { useNavigation } from "@react-navigation/native";
 
 const menuItems = [
   {
@@ -13,6 +20,7 @@ const menuItems = [
       name: "menu",
       backgroundColor: colours.primaryColour,
     },
+    destination: "Account",
   },
   {
     title: "My Messages",
@@ -20,10 +28,12 @@ const menuItems = [
       name: "mail",
       backgroundColor: colours.secondaryColour,
     },
+    destination: "Messages",
   },
 ];
 
 function AccountScreen(props) {
+  const navigator = useNavigation();
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -40,6 +50,7 @@ function AccountScreen(props) {
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
+              onPress={() => navigator.navigate(item.destination)}
               IconComponent={
                 <Icon
                   name={item.icon.name}
