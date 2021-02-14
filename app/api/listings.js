@@ -2,8 +2,9 @@ import client from "./client";
 
 const endpoint = "/listings";
 
-const getListings = () => {
-  client.get(endpoint);
+const getListings = async () => {
+  const response = await client.get(endpoint);
+  return response;
 };
 
 export default {

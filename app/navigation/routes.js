@@ -1,5 +1,5 @@
 export default Object.freeze({
-  LISTING_DETAILS: "ListingDetails",
+  LISTING_DETAILS: "ListingsDetails",
   FEED: "Feed",
   LISTING_LIST: "ListingList",
   LISTING_EDIT: "ListingsEdit",
