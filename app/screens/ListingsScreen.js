@@ -46,7 +46,7 @@ function ListingsScreen({ props }) {
               navigator.navigate(routes.LISTING_DETAILS, {
                 title: item.title,
                 price: item.price,
-                imageUrl: item.images[0].url,
+                images: item.images,
               })
             }
           >
@@ -54,6 +54,7 @@ function ListingsScreen({ props }) {
               title={item.title}
               subTitle={item.price}
               imageUrl={item.images[0].url}
+              thumbnailUrl={item.images[0].thumbnailUrl}
             />
           </TouchableWithoutFeedback>
         )}

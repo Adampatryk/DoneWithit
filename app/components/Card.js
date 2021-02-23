@@ -1,13 +1,20 @@
 import React from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { StyleSheet } from "react-native";
+import { Image } from "react-native-expo-image-cache";
+
 import colours from "../config/colours";
 import AppText from "./AppText";
 
-function Card({ title, subTitle, imageUrl }) {
+function Card({ title, subTitle, imageUrl, thumbnailUrl }) {
   return (
     <View style={styles.card}>
-      <Image style={styles.image} source={{ uri: imageUrl }} />
+      <Image
+        style={styles.image}
+        preview={{ uri: thumbnailUrl }}
+        uri={imageUrl}
+        tint="light"
+      />
       <View style={styles.detailsContainer}>
         <AppText numberOfLines={1} style={styles.title}>
           {title}
