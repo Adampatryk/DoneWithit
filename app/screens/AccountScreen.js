@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -12,6 +12,7 @@ import Screen from "../components/Screen";
 import Icon from "./../components/Icon";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import { useNavigation } from "@react-navigation/native";
+import AuthContext from "../auth/context";
 
 const menuItems = [
   {
@@ -33,13 +34,14 @@ const menuItems = [
 ];
 
 function AccountScreen(props) {
+  const { user } = useContext(AuthContext);
   const navigator = useNavigation();
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Adam Kulpa"
-          subTitle="adamkulpa16@gmail.com"
+          title={user.name}
+          subTitle={user.email}
           image={require("../assets/couch.jpg")}
         />
       </View>
