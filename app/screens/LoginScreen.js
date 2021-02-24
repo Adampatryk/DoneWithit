@@ -11,6 +11,8 @@ import {
   AppSubmitButton,
 } from "./../components/forms";
 import authApi from "../api/auth";
+import { useContext } from "react";
+import AuthContext from "../auth/context";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -18,6 +20,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen(props) {
+  const authContext = useContext(AuthContext);
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async ({ email, password }) => {
@@ -25,7 +28,7 @@ function LoginScreen(props) {
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
     const user = jwtDecode(result.data);
-    console.log(user);
+    authContext.setUser(user);
   };
 
   return (
