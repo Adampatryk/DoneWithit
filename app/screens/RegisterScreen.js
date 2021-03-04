@@ -46,41 +46,44 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Screen>
+    <>
+      {/* <ActivityIndicator visible={true} /> */}
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
-      <AppForm
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={handleRegister}
-        validationSchema={validationSchema}
-      >
-        <ErrorMessage visible={error} error={error} />
-        <AppField
-          name="name"
-          placeholder="Name"
-          icon="account"
-          placeholder="Name"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <AppField
-          name="email"
-          placeholder="Email"
-          icon="email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          autoCorrect={false}
-        />
-        <AppField
-          name="password"
-          secureTextEntry
-          placeholder="Password"
-          icon="lock"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <AppSubmitButton name="Register" />
-      </AppForm>
-    </Screen>
+      <Screen>
+        <AppForm
+          initialValues={{ name: "", email: "", password: "" }}
+          onSubmit={handleRegister}
+          validationSchema={validationSchema}
+        >
+          <ErrorMessage visible={error} error={error} />
+          <AppField
+            name="name"
+            placeholder="Name"
+            icon="account"
+            placeholder="Name"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <AppField
+            name="email"
+            placeholder="Email"
+            icon="email"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            autoCorrect={false}
+          />
+          <AppField
+            name="password"
+            secureTextEntry
+            placeholder="Password"
+            icon="lock"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <AppSubmitButton name="Register" />
+        </AppForm>
+      </Screen>
+    </>
   );
 };
 

@@ -28,38 +28,40 @@ function ListingsScreen({ props }) {
 
   const navigator = useNavigation();
   return (
-    <Screen style={styles.screen}>
-      {error && (
-        <>
-          <AppText>Couldn't retrieve listings.</AppText>
-          <AppButton onPress={loadListings}>Retry</AppButton>
-        </>
-      )}
-      {/* <ActivityIndicator visible={loading} /> */}
+    <>
       <ActivityIndicator animating={loading} size="large" color="red" />
-      <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableWithoutFeedback
-            onPress={() =>
-              navigator.navigate(routes.LISTING_DETAILS, {
-                title: item.title,
-                price: item.price,
-                images: item.images,
-              })
-            }
-          >
-            <Card
-              title={item.title}
-              subTitle={item.price}
-              imageUrl={item.images[0].url}
-              thumbnailUrl={item.images[0].thumbnailUrl}
-            />
-          </TouchableWithoutFeedback>
+      <Screen style={styles.screen}>
+        {error && (
+          <>
+            <AppText>Couldn't retrieve listings.</AppText>
+            <AppButton onPress={loadListings}>Retry</AppButton>
+          </>
         )}
-      />
-    </Screen>
+        {/* <ActivityIndicator visible={loading} /> */}
+        <FlatList
+          data={listings}
+          keyExtractor={(listing) => listing.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+              onPress={() =>
+                navigator.navigate(routes.LISTING_DETAILS, {
+                  title: item.title,
+                  price: item.price,
+                  images: item.images,
+                })
+              }
+            >
+              <Card
+                title={item.title}
+                subTitle={item.price}
+                imageUrl={item.images[0].url}
+                thumbnailUrl={item.images[0].thumbnailUrl}
+              />
+            </TouchableWithoutFeedback>
+          )}
+        />
+      </Screen>
+    </>
   );
 }
 
