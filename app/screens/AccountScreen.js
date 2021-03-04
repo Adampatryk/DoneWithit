@@ -13,6 +13,7 @@ import Icon from "./../components/Icon";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import { useNavigation } from "@react-navigation/native";
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 
 const menuItems = [
   {
@@ -36,6 +37,12 @@ const menuItems = [
 function AccountScreen(props) {
   const { user, setUser } = useContext(AuthContext);
   const navigator = useNavigation();
+
+  const handleLogout = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -68,7 +75,7 @@ function AccountScreen(props) {
         <ListItem
           title="Logout"
           IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-          onPress={() => setUser(null)}
+          onPress={handleLogout}
         />
       </View>
     </Screen>
