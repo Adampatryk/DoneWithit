@@ -1,12 +1,15 @@
 import client from "./client";
 
-const endpoint = "/users";
-
 const register = (userInfo) => {
   console.log(userInfo);
-  return client.post(endpoint, userInfo);
+  return client.post("/users", userInfo);
+};
+
+const get = (userId) => {
+  return client.get(`/user/${userId}`);
 };
 
 export default {
   register,
+  get,
 };

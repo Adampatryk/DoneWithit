@@ -45,9 +45,11 @@ function ListingsScreen({ props }) {
             <TouchableWithoutFeedback
               onPress={() =>
                 navigator.navigate(routes.LISTING_DETAILS, {
+                  listingId: item.id,
                   title: item.title,
                   price: item.price,
                   images: item.images,
+                  userId: item.userId,
                 })
               }
             >

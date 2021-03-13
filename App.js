@@ -6,6 +6,8 @@ import { AppLoading } from "expo";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
+import { NavigationContainer } from "@react-navigation/native";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -23,7 +25,9 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      {!user ? <AuthNavigator /> : <MainNavigator />}
+      <NavigationContainer ref={navigationRef}>
+        {!user ? <AuthNavigator /> : <MainNavigator />}
+      </NavigationContainer>
     </AuthContext.Provider>
   );
 }

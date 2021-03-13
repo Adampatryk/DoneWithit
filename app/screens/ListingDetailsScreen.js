@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
 import AppText from "../components/AppText";
 import colours from "../config/colours";
 import ListItem from "../components/lists/ListItem";
+import useApi from "../hooks/useApi";
+import userApi from "../api/users";
+import SendMessageComponent from "../components/SendMessageComponent";
+import listings from "../api/listings";
 
 function ListingDetailsScreen({ route }) {
-  const { title, price, images } = route.params;
+  const { listingId, title, price, images, userId } = route.params;
+  const { data, request } = useApi(userApi.get, userId);
+
+  useEffect(() => {
+    request(userId);
+    console.log(data);
+  }, []);
+
   return (
     <View>
       <Image
@@ -18,9 +29,10 @@ function ListingDetailsScreen({ route }) {
       />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{price}</AppText>
+        <AppText style={styles.subTitle}>{`£${price}`}</AppText>
         <View style={styles.userContainer}>
-          <ListItem />
+          <ListItem title={data.name} subTitle={data.email} />
+          <SendMessageComponent listingId={listingId} />
         </View>
       </View>
     </View>
